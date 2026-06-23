@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="so101">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- arg to switch between sim and real -->
+    <xacro:arg name="use_fake_hardware" default="true"/>
+    <xacro:arg name="initial_positions_file" default="$(find so101_moveit_config)/config/initial_positions.yaml"/>
+
+    <!-- include both macros -->
+    <xacro:include filename="$(find so101_moveit_config)/config/so101.ros2_control_sim.xacro"/>
+    <xacro:include filename="$(find so101_moveit_config)/config/so101.ros2_control_real.xacro"/>
+
+    <!-- If true use sim else real robot -->
+    <xacro:if value="$(arg use_fake_hardware)"> <!-- Simulation -->
+        <xacro:so101_ros2_control_sim name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    </xacro:if>
+    <xacro:unless value="$(arg use_fake_hardware)"> <!-- Real robot -->
+        <xacro:so101_ros2_control_real name="So101Hardware"/>
+    </xacro:unless>
+
+    <!-- Import so101 urdf file -->
+    <xacro:include filename="$(find so101_description)/urdf/so101.urdf.xacro" />
+
+</robot>
