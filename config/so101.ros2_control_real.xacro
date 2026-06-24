@@ -19,6 +19,8 @@
             <!-- Joint 1 → base→shoulder (shoulder pan) -->
             <joint name="shoulder_pan">
                 <param name="servo_id">1</param>
+                <param name="speed">0</param>     <!-- 0 = max -->
+                <param name="acc">150</param>     <!-- conservative for heavy shoulder -->
                 <command_interface name="position"/>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -27,6 +29,8 @@
             <!-- Joint 2 → shoulder→upper_arm (shoulder lift) -->
             <joint name="shoulder_lift">
                 <param name="servo_id">2</param>
+                <param name="speed">0</param>
+                <param name="acc">100</param>     <!-- slowest - carries full arm weight -->
                 <command_interface name="position"/>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -35,6 +39,8 @@
             <!-- Joint 3 → upper_arm→lower_arm (elbow flex) -->
             <joint name="elbow_flex">
                 <param name="servo_id">3</param>
+                <param name="speed">0</param>
+                <param name="acc">150</param>
                 <command_interface name="position"/>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -43,6 +49,8 @@
             <!-- Joint 4 → lower_arm→wrist (wrist flex) -->
             <joint name="wrist_flex">
                 <param name="servo_id">4</param>
+                <param name="speed">0</param>
+                <param name="acc">200</param>     <!-- wrist can accelerate faster -->
                 <command_interface name="position"/>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -51,6 +59,8 @@
             <!-- Joint 5 → wrist→gripper (wrist roll) -->
             <joint name="wrist_roll">
                 <param name="servo_id">5</param>
+                <param name="speed">0</param>
+                <param name="acc">200</param>   
                 <command_interface name="position"/>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -59,6 +69,8 @@
             <!-- Joint 6 → gripper→moving_jaw (gripper) -->
             <joint name="gripper">
                 <param name="servo_id">6</param>
+                <param name="speed">0</param>
+                <param name="acc">100</param>     <!-- gentle on gripper -->
                 <command_interface name="position"/>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
